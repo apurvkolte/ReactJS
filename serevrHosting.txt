@@ -1,0 +1,3 @@
+server error log
+tail cd usr/local/apache/logs/access_log
+tail cd usr/local/apache/logs/error_log

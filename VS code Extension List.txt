@@ -1,0 +1,20 @@
+Git
+WSL Recommender
+SQLTools
+Prettier- Code formatter
+GitHub Authentication
+TypeScript & javaScript language Features
+GitHub
+Merge Conflict
+JSON Language Features
+ESLint
+jslint
+Microft Acooount
+Auto Rename Tag
+NPM support for VS code
+Live Sevrer
+Emmet
+Auto Close Tag
+Node Debug Auto-attach
+Gitbase
+bostra 5 sniipt

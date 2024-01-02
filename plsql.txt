@@ -1,0 +1,160 @@
+Procedural Language
+Procedural language of sql ( sql + c)
+You can create function, procedure, package, type and trigger which are stored in database for reuse by application. It is block structure , portable language.
+Pl/sql support programming language feature.
+
+Prog1
+Declare
+a integer :=30;
+b integer :=40;
+c integer;
+f real ;
+
+Begin
+c:=a+b;
+dbms_output.put_line(“value of c”||c);
+end;
+/
+
+Local variable = inner block
+Goble variable= outer block
+Pi constant number := 3.14;
+Comment –
+Literal  number(3566,33.33), character(‘a’ , ‘%’,  ‘9’), string(‘Hello world’), Boolean(True false null), date time(‘26-11-2015’);
+Continue;
+Data type
+ 1] scalar = number,varchar2,date,char,long,Boolean
+2] composite= table, record 
+
+
+Syntax
+1.	If condition then
+elsif condition2 then
+endif;
+
+2.	case expression
+	When condition1 then result 1
+	When condition(n) then result n;
+	Else result;
+	end
+
+3	loop
+	Exist when condition
+	End loops
+
+4	while condition
+	Statement
+	End loop
+
+5	for var In  init_value..final_val   loop
+Statement;
+End loop;
+
+
+Pl/sql procedure
+Prog 1
+
+Create procedure greetings
+As
+Begin
+dbms_output.put_line(“hello world”);
+end;
+begin
+greetings
+end;
+
+op= hello world
+
+Prog 2
+
+Declare
+a number
+procedure sqrt(x in out number)
+is
+begin
+x:=x*x;
+end;
+
+begin
+a:=10;
+b number;
+b:=sqrt(a);
+dbms_output.put_line(“square”||b);
+end;/
+
+
+prog 3
+ id integer
+name varchar2(20);
+procedure insertssbt(id in integer, name in varchar2)is 
+begin
+insert into ssbt values(id,name);
+end;
+begin
+inserssbt(1,’rohan’);
+dbms_output.put_line(“Record inserted”);
+end;
+/
+
+
+Pl/sql Function
+
+Declare
+a number;
+b number;
+c number;
+function square(x in number)
+return number is
+begin
+c=x*x;
+return c;
+end;
+begin
+a:=10;
+b:=square(a);
+dbms_output.put_line(“a square is”||b);
+end;
+/
+
+Pl/sql Cursor like pointer
+
+Declare
+no number(3);
+begin 
+update ssbt set=salary=salary+500;
+if sql%notfound then
+dbms_output.put_line(“empty table”);
+elsif sql%found then
+no:=sql%rowcount;
+dbms_output.put_line(“ no of row having affect”||no);
+end if;
+end;
+/
+o/p: no of row having affect 2
+
+Exception in plsql
+1) System define
+
+Exception 
+When no_data_found then
+dbms_output.put_line(“No data”);
+when other then
+dbms_output.put_line(“error”);
+
+2) User Define
+Declare exception_name exception 
+Begin 
+When exception_name then 
+dbms_output.put_line(“exception name”);
+
+
+
+Error is bug
+Exception is warning or error condition.
+  
+
+
+
+
+
+

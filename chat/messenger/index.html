@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ChatBot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .chbt-open-button {
+            opacity: 0.8;
+            position: fixed;
+            bottom: 48px;
+            right: 19px;
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            /* width: 60px; */
+            /* height: 60px; */
+            padding: 0px 0px;
+            border-color: #f5f5f5;
+            border-radius: 35px;
+            text-align: center;
+            flex-wrap: wrap-reverse;
+            flex-direction: row-reverse;
+        }
+
+        /* Darker background on mouse-over */
+        .chbt-open-button:hover {
+            background-color: RoyalBlue;
+        }
+
+        .chbt-open-button:focus {
+            outline: none;
+        }
+
+        .chbt-main {
+            width: 500px;
+            margin-right: 85px;
+            margin-top: 25px;
+            margin-bottom: 0px;
+            background-color: #f5f5f5;
+            padding: 0px;
+            display: none;
+        }
+
+        .chbt-media-color {
+            background-color: rgb(9, 127, 131);
+        }
+
+        .chbt-media-img {
+            background-color: white;
+            margin-top: 3px;
+            margin-left: 3px;
+        }
+
+        .chbt-media-head {
+            margin: 10px;
+            color: white;
+        }
+
+        .chbt-media-head1 {
+            margin-left: 18px;
+            color: rgba(172, 255, 47, 0.87);
+        }
+
+        .chbt-chat {
+            height: 400px;
+            background-color: white;
+        }
+
+        .chbt-logo {
+            font-size: 11px;
+            margin-left: 165px;
+            margin-top: 14px;
+            text-decoration: underline;
+            width: 77%;
+            float: right;
+        }
+
+        .chbt-icon {
+            font-size: 28px;
+        }
+
+        @media (max-width: 767px) {
+            .chbt-main {
+                width: 100%;
+            }
+
+            .chbt-logo {
+                font-size: 11px;
+                margin-left: 71px;
+                margin-top: 14px;
+                text-decoration: underline;
+                width: 77%;
+                float: right;
+            }
+
+            .chbt-open-button {
+                opacity: 0.8;
+                position: fixed;
+                bottom: 52px;
+                right: 11px;
+                background-color: DodgerBlue;
+                border: none;
+                color: white;
+                font-size: 11px;
+                cursor: pointer;
+                width: 50px;
+                height: 50px;
+                padding: 10px 16px;
+                border-radius: 35px;
+                text-align: center;
+                flex-wrap: wrap-reverse;
+                flex-direction: row-reverse;
+                z-index: 1000;
+            }
+
+            .chbt-container1 {
+                width: 100%;
+                padding-right: 0px;
+                padding-left: 0px;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .chbt-icon {
+                font-size: 25px;
+            }
+
+            .chbt-mybtn {
+                margin-left: -20px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="chbt-open-button" onclick="openForm()">
+        <img class="chbt-mybtn" src="images/chat.gif" width="60px" height="60px"
+            title="Any Questions? We are Online. Ask Now...!" />
+    </button>
+
+    <div class="container chbt-container1  chbt-main" id="myChat">
+        <h1 class="text-center"></h1>
+
+        <div class="media chbt-media-color">
+            <img src="images/favicon.png" width="75px" height="75"
+                class="chbt-media-img center d-inline-flex p-2 rounded-pill float-left img-thumnail" alt="..." />
+
+            <div class="media-body">
+                <div class="">
+                    <h6 class="chbt-media-head float-right"><i class="fa fa-window-close" style="font-size: 22px;"
+                            onclick="openForm()" aria-hidden="true"></i></h6>
+                    <h6 class="chbt-media-head">Web Link Services Pvt. Ltd.</h6>
+                    <span class="chbt-media-head1">Online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- message container -->
+        <div id="chatContainer" class="chbt-chat container chbt-container1  border overflow-auto"></div>
+
+        <div class="input-group">
+            <input id="textbox" type="text" class="form-control" />
+            <div class="input-group-append">
+                <button id="sendBtn" type="button" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+        <div class="input-group ">
+            <span class="chbt-logo">Design
+                & Developed By <a href="https://weblinkservices.net/" target="_blank" rel="noreferrer">
+                    <img src="images/wlspl_logo.png" alt="Weblink Services Pvt. Ltd." width="80"
+                        style="vertical-align: middle;" /></a>
+            </span>
+        </div>
+    </div>
+</body>
+<script>
+    function openForm() {
+        if (document.getElementById('myChat').style.display === "block") {
+            document.getElementById("myChat").style.display = "none";
+        } else {
+            document.getElementById("myChat").style.display = "block"
+
+        }
+    }
+
+</script>
+
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+
+<script src="js/chat-main.js"></script>
+
+</html>

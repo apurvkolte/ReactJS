@@ -1,0 +1,130 @@
+Sun language
+1.	DML (Data Manipulation Language)  - Delete, Insert, Update  
+2.	DDL(Data Definition Language) – Create, Alter, Drop
+3.	DCL(Data Control Language) – Grant, Remove
+4.	TCL(Transaction Control Language) – Commit, Rollback
+
+
+// Delete records from database older than 1 hour doesn't delete all records
+// delete from orders WHERE order_date < DATE_SUB(CURDATE(), INTERVAL 2 HOUR)
+
+ALTER TABLE products AUTO_INCREMENT=1;
+
+Drop – All delete table Definition, Data & Database
+Delete –Only delete data row
+Truncate- same as delete but all data in table empty delete
+
+
+
+Mysql  –u root  –p
+Enter password apurv
+
+Sudo apt-get install mysql-server
+Sudo apt-get update
+Enter password
+Sudo netstat –tap mysql
+Sudo netstat –grep mysql
+Mysql  –u root  –p
+Enter password apurv
+
+
+Create database college;
+Use college;
+Show databases;
+Show tables;
+Drop database college;
+Drop table student;
+Create table student(id int not null, name varchar2(20 ) not null, age int, address cahr(20), salary decimal(18,2), primary key(id));
+Insert into student values(1,’Ram’,20,’abc’,200);
+Desc table;
+Alter table student add primary key(id);
+Alter table student add constraint uk unique(name);
+Alter table student add constraint fk foreign key(id) reference employee(ename);
+Alter table student modify name = sname;
+Alter table student drop primary key;
+Primary key----unique identity each row/record in db column can not have null value table can have only one primary key
+
+Foreign key used for integrity or data
+Order by  ---ase/dec sorting
+Group by – sorting by default asecending order , group by often used aggrete function (count,max,min,sum,avg)
+Select * from employee;
+Select max(salary) from student;
+Select * from employee limit 3/top3/row<=3;
+-single
+%all
+Select * from employee where salary like ‘200%’; 	start with 200
+Select * from employee where salary like ‘%200%’; 	 200 any position
+Select * from employee where salary like ‘2_3%’; 	start 2 end 3
+Select * from employee where salary like ‘_2%3’; 	second  2 & last 3
+Delete from employee    -- all record delete
+Delete from employee where id=7;       --where  clause to filter the record
+Update employee set address=’delhi’ where address=’delhi’;
+Select name from employee where salary < 5000 and slary>2000;
+Select * from employee order by name;	[Ase/Desc]
+Select * from employee order by(case address  when ‘delhi’ then 1 when ‘delhi’ then 1 when ‘mumbai’ then 2 when ‘bangalore’ then 3 else 100 end)ase;
+Select name,salary from employee group by name;
+Select distinct name from employeel – eliminate all duplicate record only fech unique record.
+Alter table employee add check(age>=18);
+Create index index_name on employee(name);
+Index –fastly access db create & retrieve data from db quickly
+
+1. sql  - International Organization for Standardization
+2.mysql – Open sourse , RDBMS , run as server provided multiuser access to no. of databases
+3.oracle – running online traction processing,  ORDBMS object
+4.PostgreSQl –ORDBMS server, internet facing application
+
+Auto increment must be key
+Create table employee(id int auto increment, Date date, primary key(id));
+Insert employee values(null,’2018-06-18’);
+Select * from employee where id in(select id from employee where salary>1600);
+Create table emp select * from employee;
+Insert table emp select * from employee    --copy table
+Create temporary table temp(int id);
+Temporary table not show by  show tables command, table store data temporary, data used in webpage, when you close db connection then those table data will be automatically deleted.
+
+Select  curdate();      Select  curtime();
+Select name from employee where exists (select name from employee where name =’rohan’);
+If condN true then execute otherwise fails.
+aCID Properties
+1. Automicity – unit  of work completed successfully ,  not incomplete do all
+2. Consistency – property change state , data should be according rule
+3. Isolation- Operation  Idependently Transaction do not affect each other
+4. Durability – Transaction persistency if system fails, commit data should not be lose if power fail.
+
+Commit;  	undo transaction 
+Rollback;  	undo group of transaction
+Selected row from table summaries data from various table which can be used to generate report.
+Create view emp_view as select name,salary from employee where id>3;
+Select * from emp_view;
+Delete from emp_view where name=’abc’;
+Update emp_view set salary=500;
+Drop view emp_view;
+Create index emp_ind on employee(name);
+Drop index emp_ind;
+Select e.id,e.name, em.salary from employee as e, emp as em where e.id=em.id;   --alias name
+Select name as full_name, salary as payment from employee;
+
+Joins
+Join performed in the where clause such operation      =      <     >      <>    <=     >=      !=   between     like
+Not
+1) Inner Join
+Both common
+Syntax :- select column_name from table 1 inner join table 2 on table1.column=table2.column
+Select student.id, student.name, student.city, student.age from student inner join stud where student.id= stud.sid;
+2) Left join
+Left all
+Syntax:- select column_name from table1 left join table2 on table1.column=table2.column_name;
+Select student.name, student.city, stud.age, from student left join stud on stud on student.id=stud.sid
+3) Right Join
+Right all
+$) Full join and Unoin
+Left join (union) right join
+{Select * from student left join stud on student.id=stud.id
+ union 
+ select * from student right join stud on student.id=stud.id;}
+Select column_name from table1 full outer join table2 on table1.column=table2.column
+5) self join
+Select column_name(s) from table1 T1, table2 T2 where condition
+Select s.name, s.city, st.age from student s, stud st where st.age=25;
+, intersect , except
+

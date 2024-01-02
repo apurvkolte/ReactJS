@@ -1,0 +1,10 @@
+.products_img img:hover {
+    transform: scale(2.05);
+    width: 100%;
+    height: 22vw;
+    object-fit: cover;
+}
+
+.products_img img {
+    transition: transform 0.25s ease;
+}

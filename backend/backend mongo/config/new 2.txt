@@ -1,0 +1,303 @@
+var http = require('http'),
+	fs = require('fs'),
+	ccav = require('../utils/ccavutil.js'),
+	qs = require('querystring');
+var req = require('request');
+const { order } = require('./order')
+const util = require('util');
+const connection = require('../config/connection');
+const ErrorHandler = require('../utils/errorHandler');
+const { trim } = require('../utils/trim');
+const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
+const { setMaxListeners } = require('events');
+
+exports.postRes = function (request, response) {
+	var ccavEncResponse = '',
+		ccavResponse = '',
+		workingKey = `${process.env.WORKINGKEY}`,	//Put in the 32-Bit key shared by CCAvenues.
+		ccavPOST = '',
+		encRequest = '',
+		encResponse = '';
+
+	request.on('data', function (data) {
+		ccavEncResponse += data;
+		ccavPOST = qs.parse(ccavEncResponse);
+		var encryption = ccavPOST.encResp;
+		ccavResponse = ccav.decrypt(encryption, workingKey);
+		var jsonStr = qs.parse(ccavResponse)
+		encRequest = ccav.encrypt(JSON.stringify({ "order_no": jsonStr.order_id }), workingKey);
+
+
+		req.post(
+			`https://logintest.ccavenue.com/apis/servlet/DoWebTrans?enc_request=${encRequest}&access_code=AVOZ44JJ14BP32ZOPB&request_type=JSON&response_type=JSON&command=orderStatusTracker&version=1.2`,
+			null,
+			async function (error, resp, body) {
+				if (!error && resp.statusCode == 200) {
+					encResponse = body
+					var eeee = qs.parse(encResponse)
+					encResponse = ccav.decrypt(eeee.enc_response, workingKey)
+					// console.log("req", `https://logintest.ccavenue.com/apis/servlet/DoWebTrans?enc_request=${encRequest}&access_code=AVOZ44JJ14BP32ZOPB&request_type=JSON&response_type=JSON&command=orderStatusTracker&version=1.2`);
+					// console.log("res", encResponse);
+
+
+					var json = qs.parse(ccavResponse)
+					console.log("json", json);
+					encResponse = qs.parse(ccavResponse);
+					console.log("encResponse", encResponse);
+					// accessing getter methods
+					var myOrder = qs.parse(order.getName)//NEW
+					//order table in DB
+					if (order.getName !== 'NEW' && json.order_status === 'Success' && json.status_message === 'Y') {
+						console.log("myOrder", myOrder);
+
+						const query = util.promisify(connection.query).bind(connection);
+
+						const mobile = myOrder.mobile ? trim(myOrder.mobile) : null;;
+						const flat = myOrder.flat ? trim(myOrder.flat) : null;
+						const area = myOrder.area ? trim(myOrder.area) : null;
+						const landmark = myOrder.landmark ? trim(myOrder.landmark) : null;
+						const city = myOrder.city ? trim(myOrder.city) : null;
+						const state = myOrder.state ? trim(myOrder.state) : null;
+						const country = myOrder.country ? trim(myOrder.country) : null;
+						const postalCode = myOrder.postalCode ? trim(myOrder.postalCode) : null;
+						const redeem = myOrder.redeem ? trim(myOrder.redeem) : 0;
+						const coupon_code = myOrder.coupon_code ? trim(myOrder.coupon_code) : null;
+						const reason = myOrder.reason ? trim(myOrder.reason) : null;
+
+						const bank_ref_no = json.bank_ref_no ? json.bank_ref_no : null;
+						const trans_date = json.trans_date ? json.trans_date : null;
+						const order_status = json.order_status ? json.order_status : null;
+						const payment_mode = json.payment_mode ? json.payment_mode : null;
+
+						const order_ip = encResponse.order_ip ? encResponse.order_ip : null;
+						const order_device_type = encResponse.order_device_type ? encResponse.order_device_type : null;
+						const tracking_id = encResponse.tracking_id ? encResponse.tracking_id : null;
+						const card_name = encResponse.card_name ? encResponse.card_name : null;
+
+						const billing_name = myOrder.billing_name ? myOrder.billing_name : null;
+						const userName = myOrder.userName ? myOrder.userName : null;
+						const shippingPrice = myOrder.shippingPrice ? myOrder.shippingPrice : 0;
+
+
+						try {
+
+							for (let i = 0; i < myOrder.shop_length; i++) {
+								var productName;
+								var quantity;
+								var product_id;
+								var itemsPrice;
+								var path;
+								var taxPrice;
+								var tax_rate;
+								var sale_price;
+								console.log("myOrder.quantity0", myOrder.quantity0);
+
+								if (i === 0) {
+									productName = myOrder.productName0 ? trim(myOrder.productName0) : null;
+									quantity = myOrder.quantity0;
+									product_id = myOrder.product_id0;
+									itemsPrice = myOrder.itemsPrice0;
+									path = myOrder.image0;
+									taxPrice = myOrder.taxPrice0;
+									tax_rate = myOrder.tax_rate0;
+									sale_price = myOrder.sale_price0;
+								}
+
+
+								if (i === 1) {
+									productName = myOrder.productName1 ? trim(myOrder.productName1) : null;
+									quantity = myOrder.quantity1;
+									product_id = myOrder.product_id1;
+									itemsPrice = myOrder.itemsPrice1;
+									path = myOrder.image1;
+									taxPrice = myOrder.taxPrice1;
+									tax_rate = myOrder.tax_rate1;
+									sale_price = myOrder.sale_price1;
+								}
+								if (i === 2) {
+									productName = myOrder.productName2 ? trim(myOrder.productName2) : null;
+									quantity = myOrder.quantity2;
+									product_id = myOrder.product_id2;
+									itemsPrice = myOrder.itemsPrice2;
+									path = myOrder.image2;
+									taxPrice = myOrder.taxPrice2;
+									tax_rate = myOrder.tax_rate2;
+									sale_price = myOrder.sale_price2;
+								}
+								if (i === 3) {
+									productName = myOrder.productName3 ? trim(myOrder.productName3) : null;
+									quantity = myOrder.quantity3;
+									product_id = myOrder.product_id3;
+									itemsPrice = myOrder.itemsPrice3;
+									path = myOrder.image3;
+									taxPrice = myOrder.taxPrice3;
+									tax_rate = myOrder.tax_rate3;
+									sale_price = myOrder.sale_price3;
+								}
+								if (i === 3) {
+									productName = myOrder.productName3 ? trim(myOrder.productName3) : null;
+									quantity = myOrder.quantity3;
+									product_id = myOrder.product_id3;
+									itemsPrice = myOrder.itemsPrice3;
+									path = myOrder.image3;
+									taxPrice = myOrder.taxPrice3;
+									tax_rate = myOrder.tax_rate3;
+									sale_price = myOrder.sale_price3;
+								}
+								if (i === 4) {
+									productName = myOrder.productName4 ? trim(myOrder.productName4) : null;
+									quantity = myOrder.quantity4;
+									product_id = myOrder.product_id4;
+									itemsPrice = myOrder.itemsPrice4;
+									path = myOrder.image4;
+									taxPrice = myOrder.taxPrice4;
+									tax_rate = myOrder.tax_rate4;
+									sale_price = myOrder.sale_price4;
+								}
+								if (i === 5) {
+									productName = myOrder.productName5 ? trim(myOrder.productName5) : null;
+									quantity = myOrder.quantity5;
+									product_id = myOrder.product_id5;
+									itemsPrice = myOrder.itemsPrice5;
+									path = myOrder.image5;
+									taxPrice = myOrder.taxPrice5;
+									tax_rate = myOrder.tax_rate5;
+									sale_price = myOrder.sale_price5;
+								}
+								if (i === 6) {
+									productName = myOrder.productName6 ? trim(myOrder.productName6) : null;
+									quantity = myOrder.quantity6;
+									product_id = myOrder.product_id6;
+									itemsPrice = myOrder.itemsPrice6;
+									path = myOrder.image6;
+									taxPrice = myOrder.taxPrice6;
+									tax_rate = myOrder.tax_rate6;
+									sale_price = myOrder.sale_price6;
+								}
+								if (i === 7) {
+									productName = myOrder.productName7 ? trim(myOrder.productName7) : null;
+									quantity = myOrder.quantity7;
+									product_id = myOrder.product_id7;
+									itemsPrice = myOrder.itemsPrice7;
+									path = myOrder.image7;
+									taxPrice = myOrder.taxPrice7;
+									tax_rate = myOrder.tax_rate7;
+									sale_price = myOrder.sale_price7;
+								}
+								if (i === 8) {
+									productName = myOrder.productName8 ? trim(myOrder.productName8) : null;
+									quantity = myOrder.quantity8;
+									product_id = myOrder.product_id8;
+									itemsPrice = myOrder.itemsPrice8;
+									path = myOrder.image8;
+									taxPrice = myOrder.taxPrice8;
+									tax_rate = myOrder.tax_rate8;
+									sale_price = myOrder.sale_price8;
+								}
+								if (i === 9) {
+									productName = myOrder.productName9 ? trim(myOrder.productName9) : null;
+									quantity = myOrder.quantity9;
+									product_id = myOrder.product_id9;
+									itemsPrice = myOrder.itemsPrice9;
+									path = myOrder.image9;
+									taxPrice = myOrder.taxPrice9;
+									tax_rate = myOrder.tax_rate9;
+									sale_price = myOrder.sale_price9;
+								}
+								if (i === 10) {
+									productName = myOrder.productName10 ? trim(myOrder.productName10) : null;
+									quantity = myOrder.quantity10;
+									product_id = myOrder.product_id10;
+									itemsPrice = myOrder.itemsPrice10;
+									path = myOrder.image10;
+									taxPrice = myOrder.taxPrice10;
+									tax_rate = myOrder.tax_rate10;
+									sale_price = myOrder.sale_price10;
+								}
+
+								console.log("productName", productName);
+								console.log("quantity", quantity);
+								console.log("product_id", product_id);
+								console.log("itemsPrice", itemsPrice);
+								console.log("path", path);
+								console.log("taxPrice", taxPrice);
+								console.log("tax_rate", tax_rate);
+								console.log("sale_price", sale_price);
+
+
+								console.log("flat", flat);
+								console.log("mobile", mobile);
+								console.log("area", area);
+								console.log("landmark", landmark);
+								console.log("city", city);
+								console.log("state", state);
+								console.log("country", country);
+								console.log("postalCode", postalCode);
+								console.log("redeem", redeem);
+								console.log("coupon_code", coupon_code);
+								console.log("redeem", redeem);
+								console.log("reason", reason);
+								console.log("bank_ref_no", bank_ref_no);
+								console.log("trans_date", trans_date);
+								console.log("order_status", order_status);
+								console.log("payment_mode", payment_mode);
+								console.log("order_ip", order_ip);
+								console.log("order_device_type", order_device_type);
+								console.log("tracking_id", tracking_id);
+								console.log("card_name", card_name);
+								console.log("billing_name", billing_name);
+								console.log("userName", userName);
+								console.log("shippingPrice", shippingPrice);
+
+
+								const sql = `insert into orders(id,order_id,order_date,reference_no,delivered_date,orderStatus,paidAt,paymentStatus,
+									paymentMode,order_ip,order_device_type,tracking_id,order_card_name,product_id,sale_price,
+									productName,shop_length,user_id,userName,quantity,itemsPrice,path,totalPrice,taxPrice,tax_rate,shippingPrice,
+									billing_name,mobile,flat,area,landmark,city,state,country,postalCode,redeem,coupon_code,reason) values(NULL,${encResponse.order_id},
+										NULL,'${bank_ref_no}',NULL,'Processing',NULL,${trans_date},'${order_status}','${payment_mode}','${order_ip}','${order_device_type}',
+										'${tracking_id}','${card_name}',${product_id},${sale_price},'${productName}',
+										${myOrder.shop_length},${myOrder.user_id},'${userName}',${quantity},${itemsPrice},'${path}',
+										${myOrder.totalPrice},${taxPrice},${tax_rate},${shippingPrice},'${billing_name}','${mobile}','${flat}','${area}','${landmark}','${city}','${state}',
+										'${country}','${postalCode}','${redeem}','${coupon_code}','${reason}');`;
+
+								// console.log("sql", sql);
+								const sql1 = `update products set stock=stock-${quantity}, top=top+1 where id=${product_id};`
+								const rows1 = await query(sql1);
+								if (rows1.affectedRows) {
+									const rows = await query(sql);
+									if (!rows.affectedRows) {
+										response.redirect(`http://localhost:3000/#/error`);
+									}
+								} else {
+									response.redirect(`http://localhost:3000/#/error`);
+									console.log("Product not updated after order table placed");
+								}
+							}
+
+						} catch (err) {
+							response.redirect(`http://localhost:3000/#/error`);
+							console.log(err.message);
+						}
+
+					}
+				}
+			}
+		);
+
+
+	});
+
+	request.on('end', async function () {
+		var json = qs.parse(ccavResponse)
+
+		if (json.order_status === 'Success' && json.status_message === 'Y') {
+			response.redirect(`http://localhost:3000/#/success`);
+		} else {
+			response.redirect(`http://localhost:3000/#/fail`);
+		}
+
+		response.end();
+
+	});
+
+};

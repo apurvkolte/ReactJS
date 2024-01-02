@@ -1,0 +1,49 @@
+/* <div className='wrapper1 my-4 shadow-lg'> </div> */
+
+
+.wrapper1 {
+    align-items: center;
+    margin-top: 5rem;
+    font-weight: 700;
+    margin: 11px;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0rem;
+    font-weight: 700;
+    width: 100%;
+    padding: 50px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.wrapper1 form {
+    padding: 1rem 2rem;
+}
+
+.wrapper1 form {
+    padding: 1rem 2rem;
+}
+
+.wrapper1 form .btn {
+    background-color: #146EB4;
+    border-color: #146EB4;
+    color: white;
+}
+
+.wrapper1 form .btn:hover {
+    background-color: #146EB4;
+    border-color: #146EB4;
+    color: white;
+}
+
+.wrapper1 form a {
+    font-size: 0.9rem;
+    color: grey;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%) !important;
+}
