@@ -15,6 +15,21 @@ return uuid
 //output  "124021106664"
 
 
+
+
+function generateUniqueId() {
+    const timestamp = new Date().getTime().toString(16); // Convert timestamp to hexadecimal
+    const randomPart = Math.random().toString(16).substring(2); // Generate a random hexadecimal string
+
+    return timestamp + randomPart;
+}
+
+const uniqueId = generateUniqueId();
+console.log(uniqueId); // "18ccde7cb7b81d2149a0d752"
+
+
+
+
 new Date().getTime().toString(36) + Math.random().toString(36).slice(2)
 
 
