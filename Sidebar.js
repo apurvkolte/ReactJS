@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_sidenav_buttons
 const Sidebar = () => {
     return (
         <div className="sidebar-wrapper">
