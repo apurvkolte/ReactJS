@@ -1,0 +1,93 @@
+<!-- https://www.codepel.com -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="author" content="CodePel">
+   <title> Side Sliding Menu CSS Example </title>
+   <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+      rel="stylesheet">
+   <style>
+      * {
+         margin: 0px;
+         padding: 0px;
+         box-sizing: border-box;
+         font-family: sans-serif;
+      }
+
+      #sidebar {
+         position: absolute;
+         top: 0px;
+         left: 0px;
+         width: 200px;
+         height: 100%;
+         background: #151719;
+         transition: all 300ms linear;
+      }
+
+      #sidebar.active {
+         left: -200px;
+      }
+
+      #sidebar .toggle-btn {
+         position: absolute;
+         left: 220px;
+         top: 10px;
+      }
+
+      #sidebar .toggle-btn span {
+         display: block;
+         width: 30px;
+         height: 5px;
+         background: #151719;
+         margin: 5px 0px;
+         cursor: pointer;
+      }
+
+      #sidebar div.list div.item {
+         padding: 15px 10px;
+         border-bottom: 1px solid #444;
+         color: #fcfcfc;
+         text-transform: uppercase;
+         font-size: 12px;
+      }
+
+      #sidebar div.list div.item a {
+         color: #fcfcfc;
+         text-decoration: none;
+      }
+   </style>
+
+
+
+   <script>
+      function toggleSidebar(ref) {
+         document.getElementById("sidebar").classList.toggle('active');
+      }
+
+   </script>
+
+</head>
+
+<body>
+   <!--$%adsense%$-->
+   <div id="sidebar">
+      <div class="toggle-btn" onclick="toggleSidebar(this)">
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+      <div class="list">
+         <div class="item"><a href="https://www.pixoverlab.com/" target="_blank">Pixover Lab</a></div>
+         <div class="item">About us</div>
+         <div class="item">Gallery</div>
+         <div class="item">Contact us</div>
+      </div>
+   </div>
+
+
+</body>
+
+</html>
