@@ -131,6 +131,11 @@ const UpdateProduct = () => {
             }
         }
 
+        // var object = {};
+        // formData.forEach((value, key) => object[key] = value);
+        // var json = object
+        // console.log(json)
+
         dispatch(updateProduct(Buffer.from(`${product.id}`, 'binary').toString('base64'), formData));
         e.target.reset();
         reset();
