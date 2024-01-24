@@ -18,3 +18,6 @@ Auto Close Tag
 Node Debug Auto-attach
 Gitbase
 bostra 5 sniipt
+
+Tailwind CSS IntelliSense  enable throght setting
+

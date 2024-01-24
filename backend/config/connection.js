@@ -34,3 +34,10 @@ function handleDisconnect() {
 handleDisconnect();
 
 module.exports = connection;
+
+
+
+//const connection = require("../config/connection");
+// finally {
+//     await util.promisify(connection.end).bind(connection);
+//   }
