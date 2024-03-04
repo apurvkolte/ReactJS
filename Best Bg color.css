@@ -17,18 +17,25 @@
     background-color: #4a154b;
     background-color: #F5F5F5;
     background-color: #FFF;
+    background-color: #fefff1;
     background-color: #F3F3F3;
     background-color: #f6f9fd;
     background-color: #dee0dd;
     background-color: #f2f2f2;
+    background-color: #ebecf0;
+    border-color: #9294a0;
+    border: solid 1px rgb(0, 0, 0, 0.1);
     /* text-color: #ecb22e; with bg #4a154b */
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important;
+    background-image: url("./login-bg.png");
+    background-color: hsla(0, 0%, 10%, 0.1);
+    backdrop-filter: blur(8px);
 }
 
 .bg-color-dark {
     background-color: #dfdad4;
     background-color: #dbdbdb;
     background-color: #e6d4bc;
-    background-color: #e8e8e8;
     background-color: #e8e8e8;
     background-color: #eaedef;
     background-color: #bebcbf;
