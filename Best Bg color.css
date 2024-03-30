@@ -85,6 +85,11 @@
     background-color: red;
 }
 
+body.dark {
+    background-color: #27292d;
+    color: rgb(236, 236, 236);
+}
+
 .bg-sidebar-sub {
     background-color: #eef0f2;
     background-color: #d4d6da;
