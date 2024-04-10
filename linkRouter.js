@@ -17,7 +17,7 @@ import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 const params = useParams();
 console.log("params.id", params.id);
 
-
+//useHistry replace by useNavigate
 const navigate = useNavigate();
 navigate('/home', { replace: true });
 
