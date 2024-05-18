@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 const router = useRouter();
 router.push("/admin/products");
-
+router.push('/admin/ecommerce/products', { shallow: false }).then(() => router.reload()); //reload page
 
 
 // histroy
