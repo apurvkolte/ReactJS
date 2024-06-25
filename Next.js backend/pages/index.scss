@@ -1,0 +1,5 @@
+@import "../public/style.scss";
+
+.parent-menu-active > .pro-inner-item > .pro-item-content {
+  color: var(--color-primary) !important;
+}

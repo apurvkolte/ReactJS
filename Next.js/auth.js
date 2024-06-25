@@ -1,8 +1,5 @@
 import catchAsyncErrors from './catchAsyncErrors'
-// import ErrorHandler from '../utils/errorHandler'
 import { getToken } from "next-auth/jwt"
-// import connection from '../../../config/connection'
-import { NextRequest, NextResponse } from "next/server";
 const secret = process.env.NEXTAUTH_SECRET
 
 const isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {

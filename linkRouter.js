@@ -52,3 +52,35 @@ if (greeting1.includes('?v=')) {
     console.log(greeting.split('.be/')[1]);
 
 }
+
+
+
+
+//send data in link
+   <Link href={`/all-products?product=${encodeURIComponent(cat.category)}`}>
+      const router = useRouter();
+    const { query } = router;
+
+    console.log("router", decodeURIComponent(query.product));
+	
+	
+	
+	  <Link href={{ pathname: "/enquiry1", 
+   query: { id: 5, name: "RO WATER PURIFIER 25 LPH", quantity: 1 } }}  >
+  </Link>
+    
+    
+    import { useRouter } from 'next/router'
+    const router = useRouter();
+    console.log("query", router);
+	
+	
+//in react send data in linK
+<Link to={{
+  pathname: "/all-products",
+  state: data
+}}>
+import { useLocation } from 'react-router-dom';
+const location = useLocation();
+  const { state } = location;
+   

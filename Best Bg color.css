@@ -243,3 +243,13 @@ body.dark {
 .android {
     background-color: #A4C639;
 }
+
+
+
+.scrollbar {
+    overflow-y: scroll;
+    width: 100%;
+    height: 560px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+}
