@@ -23,6 +23,8 @@
     background-color: #dee0dd;
     background-color: #f2f2f2;
     background-color: #ebecf0;
+    background-color: #f0f0f0;
+    background-color: #e6f0ff;
     border-color: #9294a0;
     border: solid 1px rgb(0, 0, 0, 0.1);
     /* text-color: #ecb22e; with bg #4a154b */
@@ -107,6 +109,21 @@ body.dark {
     --google-color: #a61c00;
     --twitter-color: #1da1f2;
 }
+
+
+.address {
+    /* pin code */
+    color: #0073e6;
+    /* emial */
+    color: #0066cc;
+    /* Mobile no */
+    color: #003366;
+    /* Gst */
+    color: #444444;
+
+}
+
+
 
 .admin-menu {
     color: white;
