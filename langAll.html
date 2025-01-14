@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Translate Integration</title>
+</head>
+
+<body style="text-align: center; margin: 20px;">
+    <h1>My Website with Google Translate</h1>
+    <div id="google_translate_element"></div>
+    <p>This is an example of integrating Google Translate into a website.</p>
+
+    <script type="text/javascript">
+        // Load the Google Translate script dynamically
+        function loadGoogleTranslate() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = true;
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(script);
+        }
+
+        // Initialize the Google Translate widget
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                { pageLanguage: 'en' }, // Specify the default language of your site
+                'google_translate_element' // The ID of the element to display the widget
+            );
+        }
+
+        loadGoogleTranslate();
+    </script>
+</body>
+
+</html>

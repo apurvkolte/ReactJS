@@ -34,6 +34,11 @@
     backdrop-filter: blur(8px);
 }
 
+/* 
+card box border
+box-shadow: 0 2px 16px 4px rgba(40, 44, 63, .07); 
+    */
+
 .bg-color-dark {
     background-color: #dfdad4;
     background-color: #dbdbdb;

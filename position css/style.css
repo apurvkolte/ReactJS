@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Gilroy
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    display: flex;
+    /* display: block; */
+}
+
+.box {
+    /* position: relative; */
+    height: 200px;
+    width: 200px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: inline-block; */
+
+}
+
+.block {
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    left: 20%;
+    background-color: green;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* display: inline-block; */
+}
