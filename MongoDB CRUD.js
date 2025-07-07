@@ -247,31 +247,23 @@ var url = "mongodb://localhost:27017/mydb";
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 MongoDB
 
+
+https://www.mongodb.com/try/download/community
+https://www.mongodb.com/try/download/shell
 c:\Program Files\mongoDB\5.3\bin\
 ==> mongod
 cmd mongod
 
 Add c:\data\db folder
+
+env veribale
+C:\Program Files\MongoDB\Server\8.0\bin
+C:\Users\apurv\AppData\Local\Programs\mongosh\
+
+mongod --version
 
 Command
 

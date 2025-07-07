@@ -128,7 +128,12 @@ body.dark {
 
 }
 
-
+/* admin panel color bg */
+.admin-bg {
+    background-color: #3C4B64;
+    /* background-color: #303C54;  heading and under submenu bg */
+    /* background-color: #3B4659  hover menu; */
+}
 
 .admin-menu {
     color: white;

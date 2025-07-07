@@ -1,0 +1,22 @@
+git init
+git add .
+git commit -m "myproj"
+git status
+git remote add origin http
+git push origin master
+
+git push -f origin master
+git remote remove origin
+git config --global user.email "abc@gmail.com"
+git config --global user.name "abc"
+git pull hett copy git to dir
+
+------------------------------------
+Heroku
+
+npm install -g heroku
+heroku login
+heroku create projectname
+heroku git remote -a projectname
+
+git push heroku master
