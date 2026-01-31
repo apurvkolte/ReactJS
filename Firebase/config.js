@@ -1,7 +1,7 @@
 const firebase = require("firebase");
 require("firebase/firestore");
 const firebaseConfig = {
-  apiKey: "AIzaSyAZhjjX8zGC2TFS25P-CU61tSzX_IlQc0c",
+  apiKey: "AIzaSyAZhjjX8zGC2TFS25P-CU61tSzX_IlQc0cKHARAKP",
   authDomain: "blog-d34b0.firebaseapp.com",
   projectId: "blog-d34b0",
   storageBucket: "blog-d34b0.appspot.com",

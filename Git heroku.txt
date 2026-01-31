@@ -20,3 +20,19 @@ heroku create projectname
 heroku git remote -a projectname
 
 git push heroku master
+
+
+git rm --cached frontend
+Remove-Item -Recurse -Force .\frontend\.git
+
+stop tract
+git rm --cached frontend/.env
+
+frontend folder not add
+git rm --cached frontend
+Remove-Item .gitmodules
+Remove-Item -Recurse -Force .git\modules\frontend
+rd -r -fo .git\modules\frontend
+dir frontend\.git
+Remove-Item -Recurse -Force frontend\.git
+git add frontend

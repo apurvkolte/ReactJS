@@ -1,0 +1,76 @@
+{product.discount > 0 && (
+    <div className="absolute top-3 right-3">
+        <div className="relative">
+            <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-600 transform rotate-45 shadow-lg flex items-center justify-center">
+                <span className="text-xs font-black text-yellow-900 transform -rotate-45 drop-shadow-sm">{product.discount}%</span>
+            </div>
+            <div className="absolute -top-1 -left-1 w-3 h-3 bg-yellow-300 rounded-full blur-sm"></div>
+            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-yellow-300 rounded-full blur-sm"></div>
+        </div>
+    </div>
+)}
+ {product.discount > 0 && (
+                            <div className="absolute t3">
+                                <div className="relative">
+                                    <div className="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-t-md shadow-md">
+                                        {product.discount}% OFF
+                                    </div>
+                                    <div className="absolute bottom-0 left-1/2 w-4 h-4 bg-purple-600 transform -translate-x-1/2 translate-y-1/2 rotate-45"></div>
+                                </div>
+                            </div>
+                        )}
+						
+						
+						{product.discount > 0 && (
+    <div className="absolute top-3 right-0">
+        <div className="relative bg-red-600 text-white text-xs font-bold pl-3 pr-5 py-1 shadow-md">
+            {product.discount}% OFF
+            <div className="absolute right-0 top-0 h-full w-2 bg-red-700 clip-ribbon-tail"></div>
+        </div>
+    </div>
+)}
+  {product.discount > 0 && (
+                            <div className="absolute to">
+                                <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-md shadow-lg flex items-center justify-center">
+                                    <span className="transform -rotate-12">{product.discount}% OFF</span>
+                                </span>
+                            </div>
+                        )}
+						{product.discount > 0 && (
+    <span className="bg-gradient-to-br from-red-500 to-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-0.5">
+        {product.discount}% OFF
+    </span>
+)}
+
+
+{product.discount > 0 && (
+    <span className="bg-white text-red-600 text-xs font-bold px-3 py-1 rounded-full border-2 border-red-500 shadow-sm">
+        {product.discount}% OFF
+    </span>
+)}
+
+
+{product.discount > 0 && (
+    <span className="bg-gradient-to-r from-gray-900 to-gray-800 text-red-400 text-xs font-bold px-3 py-1 rounded-full shadow-md border border-gray-700">
+        {product.discount}% OFF
+    </span>
+)}
+
+       {/* Badges */}
+                    <div className="absolute top-3 left-3 flex flex-col space-y-2">
+                        {product.discount > 0 && (
+                            <div className="relative">
+                                <span className="absolute  bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-6 z-10">
+                                    {product.discount}% OFF
+                                </span>
+                            </div>
+                        )}
+                    </div>
+					
+					
+					
+					{product.discount > 0 && (
+    <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-red-500/50 hover:shadow-red-500/70 transition-shadow">
+        {product.discount}% OFF
+    </span>
+)}

@@ -1,0 +1,28 @@
+function send(message) {
+    emailjs.send("service_b2y8e22", "template_6v85dgd", {
+        title: "New user getting a message from chatbot",
+        name: "Chatbot",
+        time: "",
+        message: message,
+        email: "abc@gmail.com",
+    }).then(
+        // res => console.log("✅ Email sent:", res),
+        // err => console.error("❌ Failed to send email:", err)
+    );;
+}
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "AlHVhxvX26hyCdBmT1KHARAKP",
+            });
+        })();
+    </script>
+
+https://www.emailjs.com/
+api key
+create template use { { } }
+

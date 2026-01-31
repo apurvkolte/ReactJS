@@ -1,4 +1,2 @@
-https://leafletjs.com/
 
-https://cdnjs.com/libraries/socket.io
 

@@ -1,0 +1,129 @@
+npm i react-i18next
+npm i i18next
+
+///i18.ts
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+import en from './en.json'
+import de from './de.json'
+import hi from './hi.json'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const LANGUAGES = {
+    en: {
+        translation: en
+    },
+    de: {
+        translation: de
+    },
+    hi: {
+        translation: hi
+    }
+}
+
+const LANGUAGES_DETECTOR = {
+    type: "languageDetector",
+    async: true,
+    detect: async (callback: (lang: string) => void) => {
+        try {
+            const saveLanguage = await AsyncStorage.getItem("LANGUAGE");
+            if (saveLanguage) {
+                callback(saveLanguage);
+                return
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        callback("en")
+    },
+    cacheUserLanguage: async (lang: string) => {
+        try {
+            await AsyncStorage.setItem("LANGUAGE", lang)
+
+        } catch (error) {
+            console.log("Error Saving Language", error);
+
+        }
+    }
+}
+
+i18n.use(LANGUAGES_DETECTOR as any).use(initReactI18next).init({
+    resources: LANGUAGES,
+    fallbackLng: "en",
+    defaultNS: "translation",
+    ns: ["translation"],
+    react: {
+        useSuspense: false
+    },
+    interpolation: {
+        escapeValue: false
+    },
+
+})
+
+export default i18n
+
+///LanguagesList.ts
+export const LanguagesList = [
+    { code: "en", label: "English" },
+    { code: "hi", label: "हिन्दी" }
+]
+
+
+
+///change buton code
+    const [selectedLanguage, setSelectedLanguage] = useState<string>(i18n.language);
+
+    const handleConfirm = () => {
+        SheetManager.hide("LANG_SHEET");
+        i18n.changeLanguage(selectedLanguage)
+    }
+
+
+return 
+      <AppText style={{ marginBottom: vs(20), textAlign: "center" }}>Change Language</AppText>
+
+                {LanguagesList.map((lang) => (
+                    <RadioButtonText
+                        key={lang.code}
+                        title={lang.code}
+                        selected={selectedLanguage === lang.code}
+                        onPress={() => setSelectedLanguage(lang.code)} />
+                ))}
+
+                <AppButton title='Confirm' onPress={handleConfirm}></AppButton>
+<AppText>{t("common.message.w")}</AppText>
+
+
+
+
+////in all code 
+
+  const { t } = useTranslation();
+t('Email')
+t('Password')
+
+
+///in en.json
+{
+
+"Sign Up": "Sign Up",
+    "Email": "Email",
+    "Password": "Password",
+"common": {
+        "message": {
+            "w": "Hello User!"
+        }
+    },
+}
+
+////in hi.json
+
+{
+"Sign Up": "साइन अप",
+ "Email": "ईमेल",
+ "Password": "पासवर्ड"
+}
+
+
