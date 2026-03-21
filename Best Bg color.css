@@ -326,3 +326,12 @@ box-shadow: 0 2px 16px 4px rgba(40, 44, 63, .07);
     /* small bubble animation 
 
     Floating particle */
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 5px 8px -4px rgba(0, 0, 0, 0.1);
+        height: 64px;
+        padding: 0 60px;
+    }
